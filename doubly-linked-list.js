@@ -11,6 +11,7 @@ function Node(value) {
 }
 
 DoublyList.prototype.print = function() {
+    console.log('Doubly-inked list:');
     var currentNode = this.head;
     while (currentNode !== null) {
         console.log(currentNode.data);
@@ -58,6 +59,22 @@ DoublyList.prototype.delete = function(node) {
     }
 };
 
+DoublyList.prototype.removeItemByIndex = function(index) {
+    if (index === 0) { // the item to remove is in the head
+        this.head = this.head.next;
+        this.head.previous = null;
+        this._length--;
+    } else {
+        var currentNode = this.head;
+        for (var i = 1; i < index; i++) {
+            currentNode = currentNode.next;
+        }
+        currentNode.next = currentNode.next.next;
+        currentNode.next.previous = currentNode;
+        this._length--;
+    }
+};
+
 // test the list:
 var list = new DoublyList();
 list.addToTheBeginning(new Node(3));
@@ -69,3 +86,5 @@ list.addToTheEnd(new Node(7));
 list.print(); // 5, 3, 4, 7
 list.delete(node2);
 list.print(); // 5, 3, 7
+list.removeItemByIndex(1);
+list.print(); // 5, 7

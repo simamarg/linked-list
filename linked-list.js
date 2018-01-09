@@ -9,6 +9,7 @@ function Node(data) {
 }
 
 LinkedList.prototype.print = function() {
+    console.log('Singly-inked list:')
     var currentNode = this.head;
     while (currentNode !== null) {
         console.log(currentNode.data);
@@ -63,7 +64,6 @@ LinkedList.prototype.removeItemByIndex = function(index) {
     }
     this._length--;
 };
-
 
 // test the list:
 var list = new LinkedList();
